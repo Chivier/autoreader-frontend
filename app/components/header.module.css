@@ -1,0 +1,38 @@
+/* Header.module.css */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    padding-left: 120px;
+    padding-right: 120px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2D3748; /* equivalent to gray.800 in Chakra UI */
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .signInButton {
+    display: inline-block;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+    background-color: #3182CE; /* equivalent to blue color scheme in Chakra UI */
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .signInButton:hover {
+    background-color: #2B6CB0; /* darken the blue color on hover */
+  }
+  

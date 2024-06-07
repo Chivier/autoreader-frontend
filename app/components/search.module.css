@@ -1,0 +1,92 @@
+/* Search.module.css */
+
+.container {
+    padding: 16px;
+    background-color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    padding-left: 56px;
+    padding-right: 56px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.h1 {
+    font-family: 'Arial, sans-serif'; /* Change font family */
+    font-size: 36px; /* Change font size */
+    color: #333; /* Change text color */
+    text-align: center; /* Center align the text */
+    margin-top: 20px; /* Add some top margin */
+    margin-bottom: 20px; /* Add some bottom margin */
+    text-transform: uppercase; /* Transform text to uppercase */
+    letter-spacing: 2px; /* Add some letter spacing */
+    line-height: 1.2; /* Adjust line height */
+}
+
+.h2 {
+    font-family: 'Arial, sans-serif'; /* Change font family */
+    font-size: 18px; /* Change font size */
+    color: #333; /* Change text color */
+    text-align: center; /* Center align the text */
+    margin-top: 20px; /* Add some top margin */
+    margin-bottom: 20px; /* Add some bottom margin */
+    letter-spacing: 2px; /* Add some letter spacing */
+    line-height: 1.2; /* Adjust line height */
+}
+
+
+.input {
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex-grow: 1;
+    margin-right: 16px;
+    color: black;
+    font-weight: bold;
+}
+
+.button {
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+    background-color: #3182CE; /* equivalent to blue color scheme in Chakra UI */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #2B6CB0; /* darken the blue color on hover */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.card {
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.description {
+    font-size: 1rem;
+}
