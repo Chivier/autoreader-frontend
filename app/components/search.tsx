@@ -4,12 +4,19 @@ import { useUser } from '@clerk/nextjs';
 import { useState, useEffect } from 'react';
 import styles from './search.module.css';
 
+type TimeLeft = {
+    days?: number;
+    hours?: number;
+    minutes?: number;
+    seconds?: number;
+};
+
 export function Search() {
     const { user } = useUser();
-    const [query, setQuery] = useState('');
-    const [results, setResults] = useState([]);
-    const [timeLeft, setTimeLeft] = useState({});
-    const [isSearching, setIsSearching] = useState(false);
+    const [query, setQuery] = useState<string>('');
+    const [results, setResults] = useState<any[]>([]);
+    const [timeLeft, setTimeLeft] = useState<TimeLeft>({});
+    const [isSearching, setIsSearching] = useState<boolean>(false);
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -20,7 +27,7 @@ export function Search() {
         return () => clearInterval(timer);
     }, []);
 
-    const handleSearch = async (searchQuery) => {
+    const handleSearch = async (searchQuery: string) => {
         setIsSearching(true);
         const level = "general"; // Set the level here
         const response = await fetch('https://autoreader-backend.ed-aisys.com/api/search', {
@@ -35,12 +42,12 @@ export function Search() {
         setIsSearching(false);
     };
 
-    function calculateTimeLeft() {
+    function calculateTimeLeft(): TimeLeft {
         const deadline = new Date('June 09, 2024 12:00:00');
         const now = new Date();
-        const difference = deadline - now;
+        const difference: number = deadline.getTime() - now.getTime();
 
-        let timeLeft = {};
+        let timeLeft: TimeLeft = {};
 
         if (difference > 0) {
             timeLeft = {
@@ -54,20 +61,20 @@ export function Search() {
         return timeLeft;
     }
     
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             handleSearch(query);
         }
     };
 
-    const formatTime = (time) => {
+    const formatTime = (time: number) => {
         return time < 10 ? `0${time}` : time;
     };
 
     return (
         <div className={styles.container}>
             <h1 className={styles.h1}>
-                Semantic Search in today's arXiv Papers
+                Semantic Search in today&apos;s arXiv Papers
             </h1>
             <h2 className={styles.h2}>
                 Subscription is coming soon! Next version will release in:
