@@ -8,21 +8,17 @@ export function Search() {
     const { user } = useUser();
     const [query, setQuery] = useState('');
     const [results, setResults] = useState([]);
-    const [isClient, setIsClient] = useState(false);
     const [timeLeft, setTimeLeft] = useState({});
     const [isSearching, setIsSearching] = useState(false);
 
     useEffect(() => {
-        setIsClient(true);
+        const timer = setInterval(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
 
-        if (isClient) {
-            const timer = setInterval(() => {
-                setTimeLeft(calculateTimeLeft());
-            }, 1000);
-
-            return () => clearInterval(timer);
-        }
-    }, [isClient]);
+        // Cleanup function to clear the interval
+        return () => clearInterval(timer);
+    }, []);
 
     const handleSearch = async (searchQuery) => {
         setIsSearching(true);
@@ -76,11 +72,9 @@ export function Search() {
             <h2 className={styles.h2}>
                 Subscription is coming soon! Next version will release in:
             </h2>
-            {isClient && (
-                <h2 className={styles.h2}>
-                    {`${timeLeft.days || 0} days ${formatTime(timeLeft.hours || 0)}:${formatTime(timeLeft.minutes || 0)}:${formatTime(timeLeft.seconds || 0)}`}
-                </h2>
-            )}
+            <h2 className={styles.h2}>
+                {`${timeLeft.days || 0} days ${formatTime(timeLeft.hours || 0)}:${formatTime(timeLeft.minutes || 0)}:${formatTime(timeLeft.seconds || 0)}`}
+            </h2>
             <h2 className={styles.h2}>
                 (Subscribe to your interested problem in one click)
             </h2>
@@ -112,7 +106,7 @@ export function Search() {
                     <div className={styles.loader}></div>
                 </div>
             )}
-            {isClient && !isSearching && (
+            {!isSearching && (
                 <div className={styles.grid}>
                     {results.map((result, index) => (
                         <div
