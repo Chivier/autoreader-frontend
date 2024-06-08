@@ -10,6 +10,7 @@ export function Search() {
     const [results, setResults] = useState([]);
     const [isClient, setIsClient] = useState(false);
     const [timeLeft, setTimeLeft] = useState({});
+    const [isSearching, setIsSearching] = useState(false);
 
     useEffect(() => {
         setIsClient(true);
@@ -24,6 +25,7 @@ export function Search() {
     }, [isClient]);
 
     const handleSearch = async (searchQuery) => {
+        setIsSearching(true);
         const level = "general"; // Set the level here
         const response = await fetch('https://autoreader-backend.ed-aisys.com/api/search', {
             method: 'POST',
@@ -34,6 +36,7 @@ export function Search() {
         });
         const data = await response.json();
         setResults(data.papers); // Based on your comment, the results are in the "papers" field
+        setIsSearching(false);
     };
 
     function calculateTimeLeft() {
@@ -54,6 +57,12 @@ export function Search() {
 
         return timeLeft;
     }
+    
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch(query);
+        }
+    };
 
     const formatTime = (time) => {
         return time < 10 ? `0${time}` : time;
@@ -81,6 +90,7 @@ export function Search() {
                     placeholder="Search..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={handleKeyDown}
                 />
             </header>
             <div className={styles.buttoncontainer}>
@@ -96,7 +106,13 @@ export function Search() {
                     Subscribe
                 </button>
             </div>
-            {isClient && (
+            {isSearching && (
+                <div className={styles.spinner}>
+                    {/* Add your spinner or loading animation here */}
+                    <div className={styles.loader}></div>
+                </div>
+            )}
+            {isClient && !isSearching && (
                 <div className={styles.grid}>
                     {results.map((result, index) => (
                         <div
