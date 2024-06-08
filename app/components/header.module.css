@@ -5,8 +5,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 16px;
-    padding-left: 120px;
-    padding-right: 120px;
+    padding-left: auto;
+    padding-right: auto;
     background-color: white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }

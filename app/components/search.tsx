@@ -23,7 +23,6 @@ export function Search() {
             setTimeLeft(calculateTimeLeft());
         }, 1000);
 
-        // Cleanup function to clear the interval
         return () => clearInterval(timer);
     }, []);
 
@@ -37,10 +36,28 @@ export function Search() {
             },
             body: JSON.stringify({ input: searchQuery, level: level }),
         });
-        const data = await response.json();
+        var data = await response.json();
+        var papers = data.papers;
+        for (var i = 0; i < papers.length; i++) {
+            papers[i].pdfurl = papers[i].url.replace("abs", "pdf");
+            const paper_id = papers[i].url.split("/").pop();
+            papers[i].unrelatedlink = `https://autoreader-backend.ed-aisys.com/api/unrelated?query=${searchQuery}&paperid=${paper_id}`;
+        }
         setResults(data.papers); // Based on your comment, the results are in the "papers" field
         setIsSearching(false);
     };
+
+    const uploadUnrelatedInfo = async (unrelatedlink: string) => {
+        // setIsSearching(true);
+        const response = await fetch(unrelatedlink, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        // var data = await response.json();
+        // setIsSearching(false);
+    }
 
     function calculateTimeLeft(): TimeLeft {
         const deadline = new Date('June 09, 2024 12:00:00');
@@ -127,6 +144,10 @@ export function Search() {
                             </h2>
                             <p className={styles.author}>{result.author}</p>
                             <p className={styles.abstract}>{result.abstract}</p>
+                            <div className={styles.buttonGroup}>
+                                <button className={styles.thumbButton} onClick={() => uploadUnrelatedInfo(result.unrelatedlink)}>Unrelated</button>
+                                <a href={result.pdfurl} className={styles.readPdfButton} target="_blank" rel="noopener noreferrer">Read PDF</a>
+                            </div>
                         </div>
                     ))}
                 </div>

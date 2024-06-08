@@ -3,53 +3,29 @@
 .container {
     padding: 16px;
     background-color: white;
-}
-
-.spinner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100px; /* Adjust as needed */
-}
-
-.loader {
-    padding: 10px;
-    border: 4px solid #CBD5E0; /* Light grey */
-    border-top: 4px solid #3182CE; /* Blue */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-
-/* .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-} */
+}
 
 .buttoncontainer {
     display: flex;
-    justify-content: center;
-    gap: 10px; /* Add some space between the buttons */
+    justify-content: space-between; /* Space buttons evenly */
+    width: 100%;
+    max-width: 600px; /* Set a max width for the container */
     margin-bottom: 20px;
 }
 
 .header {
     display: flex;
-    justify-content: column;
+    flex-direction: column;
     align-items: center;
+    width: 80%;
     padding: 16px;
-    padding-left: 56px;
-    padding-right: 56px;
+    padding-left: auto;
+    padding-right: auto;
     background-color: white;
 }
 
@@ -76,11 +52,9 @@
     line-height: 1.2; /* Adjust line height */
 }
 
-
 /* Input Styles */
 .input {
     width: 100%;
-    max-width: 80%; /* Set a max width for the input */
     margin: 0 auto; /* Center the input */
     padding: 10px;
     border: 1px solid #ccc;
@@ -94,26 +68,70 @@
 
 /* Button Styles */
 .button {
-    background-color: #3182ce;
+    background-color: #0B58A9;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 24px; /* Increase padding for larger button */
+    border-radius: 10px;
+    width: 150px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold; /* Set font to bold */
+}
+
+.searchButton {
+    background-color: #0B58A9;
+    color: white;
+    border: none;
+    padding: 12px 24px; /* Increase padding for larger button */
+    border-radius: 10px;
+    width: 150px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold; /* Set font to bold */
+}
+
+.subscribeButton {
+    background-color: #0B58A9;
+    color: white;
+    border: none;
+    padding: 12px 24px; /* Increase padding for larger button */
+    border-radius: 10px;
+    width: 150px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold; /* Set font to bold */
+}
+
+
+/* Read PDF Button Styles */
+.readPdfButton {
+    background-color: white;
+    color: #3182ce;
+    border: 2px solid #3182ce;
+    padding: 5px 10px; /* Reduce padding */
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
+    transition: background-color 0.3s, color 0.3s;
 }
 
+.readPdfButton:hover {
+    background-color: #3182ce;
+    color: white;
+}
 
 /* Grid Styles */
 .grid {
     display: grid;
-    grid-template-columns: 1fr;
     gap: 16px;
     margin-top: 16px;
-    max-width: 80%; /* Max width for the grid container */
+    max-width: 100%; /* Max width for the grid container */
     margin-left: auto;
     margin-right: auto;
     padding: 0 16px; /* Add some padding for better appearance */
+    align-items: center;
+    justify-items: center; /* Center the cards */
 }
 
 /* Card Styles */
@@ -122,7 +140,10 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     background-color: white;
+    max-width: 800px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: left; /* Align text to the left */
+    width: 100%; /* Make the card take full width */
 }
 
 .title {
@@ -151,4 +172,35 @@
 
 .abstract {
     font-size: 14px;
+}
+
+/* Thumbs Button Styles */
+.thumbButton {
+    font-weight: bold;
+    background-color: white;
+    color: #393543;
+    border: 2px solid #393543;
+    padding: 5px 10px; /* Reduce padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem; /* Adjust font size */
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    align-items: center; /* Center the thumb icon vertically */
+    justify-content: center; /* Center the thumb icon horizontally */
+    width: 100px; /* Set a fixed width to make buttons equal size */
+    height: 40px; /* Set a fixed height to make buttons equal size */
+}
+
+.thumbButton:hover {
+    background-color: #393543;
+    font-weight: bold;
+    color: white;
+}
+
+.buttonGroup {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    gap: 10px; /* Add some space between buttons */
 }
