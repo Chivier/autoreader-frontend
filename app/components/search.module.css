@@ -14,7 +14,7 @@
     display: flex;
     justify-content: space-between; /* Space buttons evenly */
     width: 100%;
-    max-width: 600px; /* Set a max width for the container */
+    max-width: 900px; /* Set a max width for the container */
     margin-bottom: 20px;
 }
 

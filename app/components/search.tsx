@@ -60,7 +60,7 @@ export function Search() {
     }
 
     function calculateTimeLeft(): TimeLeft {
-        const deadline = new Date('June 09, 2024 12:00:00');
+        const deadline = new Date('June 09, 2024 23:00:00');
         const now = new Date();
         const difference: number = deadline.getTime() - now.getTime();
 
