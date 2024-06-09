@@ -124,13 +124,12 @@ export function Search() {
                     Subscribe
                 </button>
             </div>
-            {isSearching && (
+            {isSearching ? (
                 <div className={styles.spinner}>
                     {/* Add your spinner or loading animation here */}
                     <div className={styles.loader}></div>
                 </div>
-            )}
-            {!isSearching && (
+            ) : (
                 <div className={styles.grid}>
                     {results.map((result, index) => (
                         <div
