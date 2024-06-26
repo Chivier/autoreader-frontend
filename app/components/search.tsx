@@ -18,13 +18,13 @@ export function Search() {
     const [timeLeft, setTimeLeft] = useState<TimeLeft>({});
     const [isSearching, setIsSearching] = useState<boolean>(false);
 
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setTimeLeft(calculateTimeLeft());
-        }, 1000);
+    // useEffect(() => {
+    //     const timer = setInterval(() => {
+    //         setTimeLeft(calculateTimeLeft());
+    //     }, 1000);
 
-        return () => clearInterval(timer);
-    }, []);
+    //     return () => clearInterval(timer);
+    // }, []);
 
     const handleSearch = async (searchQuery: string) => {
         setIsSearching(true);
@@ -47,6 +47,25 @@ export function Search() {
         setIsSearching(false);
     };
 
+    const handleSubscribe = async (searchQuery: string) => {
+        if (!user) {
+            alert('Please sign in to subscribe');
+            return;
+        }
+        const email = user.primaryEmailAddress?.emailAddress;
+        console.log("email", user.primaryEmailAddress?.emailAddress);
+        console.log(email);
+        const response = await fetch('https://autoreader-backend.ed-aisys.com/api/subscribe/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ user_email: email, query: searchQuery }),
+        });
+        console.log(email);
+        console.log(searchQuery);
+    }
+
     const uploadUnrelatedInfo = async (unrelatedlink: string) => {
         // setIsSearching(true);
         const response = await fetch(unrelatedlink, {
@@ -59,24 +78,24 @@ export function Search() {
         // setIsSearching(false);
     }
 
-    function calculateTimeLeft(): TimeLeft {
-        const deadline = new Date('June 09, 2024 23:00:00');
-        const now = new Date();
-        const difference: number = deadline.getTime() - now.getTime();
+    // function calculateTimeLeft(): TimeLeft {
+    //     const deadline = new Date('June 09, 2024 23:00:00');
+    //     const now = new Date();
+    //     const difference: number = deadline.getTime() - now.getTime();
 
-        let timeLeft: TimeLeft = {};
+    //     let timeLeft: TimeLeft = {};
 
-        if (difference > 0) {
-            timeLeft = {
-                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-                minutes: Math.floor((difference / 1000 / 60) % 60),
-                seconds: Math.floor((difference / 1000) % 60),
-            };
-        }
+    //     if (difference > 0) {
+    //         timeLeft = {
+    //             days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+    //             hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+    //             minutes: Math.floor((difference / 1000 / 60) % 60),
+    //             seconds: Math.floor((difference / 1000) % 60),
+    //         };
+    //     }
 
-        return timeLeft;
-    }
+    //     return timeLeft;
+    // }
     
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
@@ -93,7 +112,7 @@ export function Search() {
             <h1 className={styles.h1}>
                 Semantic Search in today&apos;s arXiv Papers
             </h1>
-            <h2 className={styles.h2}>
+            {/* <h2 className={styles.h2}>
                 Subscription is coming soon! Next version will release in:
             </h2>
             <h2 className={styles.h2}>
@@ -101,7 +120,7 @@ export function Search() {
             </h2>
             <h2 className={styles.h2}>
                 (Subscribe to your interested problem in one click)
-            </h2>
+            </h2> */}
             <header className={styles.header}>
                 <input
                     className={styles.input}
@@ -120,6 +139,7 @@ export function Search() {
                 </button>
                 <button
                     className={styles.button}
+                    onClick={() => handleSubscribe(query)}
                 >
                     Subscribe
                 </button>

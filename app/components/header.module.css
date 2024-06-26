@@ -35,4 +35,11 @@
   .signInButton:hover {
     background-color: #2B6CB0; /* darken the blue color on hover */
   }
-  
+ 
+  .link {
+    
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+  }

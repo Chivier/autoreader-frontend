@@ -16,6 +16,21 @@ export function Header() {
         </Link>
       </div>
       <div>
+        <Link href="/">
+          <h2 className={styles.link}>Search</h2>
+        </Link>
+      </div>
+      <div>
+        <Link href="/subscription">
+          <h2 className={styles.link}>Subscription</h2>
+        </Link>
+      </div>
+      <div>
+        <Link href="/about">
+          <h2 className={styles.link}>About</h2>
+        </Link>
+      </div>
+      <div>
         {user ? (
           <UserButton
             appearance={{
